@@ -4,11 +4,13 @@ class ResortPostController < ApplicationController
 	# index all posts
 
 	get '/' do
+
 		posts = Resort_Post.all.order(:created_at)
 		{
 			status: 200,
 			message: "You have hit all posts",
-			posts: posts
+			posts: posts,
+			puts: request.session.inspect
 		}.to_json
 
 	end
@@ -17,6 +19,7 @@ class ResortPostController < ApplicationController
 	# index user-posts
 
 	get '/my-posts' do
+
 		user = User.find_by username: session[:username]
 		{
 			status: 200,
@@ -34,7 +37,7 @@ class ResortPostController < ApplicationController
 		payload_body = request.body.read
 		payload = JSON.parse(payload_body).symbolize_keys
 
-		# binding.pry
+		binding.pry
 
 		user = User.find_by username: session[:username]
 		resort_post = Resort_Post.new

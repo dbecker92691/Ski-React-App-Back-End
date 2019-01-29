@@ -11,13 +11,15 @@ class UserAPIController < ApplicationController
 		user = User.find_by username: payload[:username]
 		password = payload[:password]
 
-
 		if user && user.authenticate(password)
 			session[:logged_in] = true
 			session[:username] = user.username
+			session[:message] = "session is active"
 			{
 				status: 200,
-				message: "#{user.username} has logged in"
+				message: "#{user.username} has logged in",
+				puts: request.session.inspect
+
 			}.to_json
 		else
 			{
@@ -25,9 +27,10 @@ class UserAPIController < ApplicationController
 				message: "Invalid username or password"
 			}.to_json
 
-		end
+		end	
 
-		
+
+
 	end
 	
 

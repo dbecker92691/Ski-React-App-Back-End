@@ -41,6 +41,7 @@ class ApplicationController < Sinatra::Base
 
 	get '/' do
 		# binding.pry
+
 		{
 			status: 200,
 			message: "We are up and running"
