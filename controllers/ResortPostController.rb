@@ -37,7 +37,7 @@ class ResortPostController < ApplicationController
 		payload_body = request.body.read
 		payload = JSON.parse(payload_body).symbolize_keys
 
-		binding.pry
+		# binding.pry
 
 		user = User.find_by username: session[:username]
 		resort_post = Resort_Post.new

@@ -18,7 +18,8 @@ class UserAPIController < ApplicationController
 			{
 				status: 200,
 				message: "#{user.username} has logged in",
-				puts: request.session.inspect
+				puts: request.session.inspect,
+				username: user.username
 
 			}.to_json
 		else
